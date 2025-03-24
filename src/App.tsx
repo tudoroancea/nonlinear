@@ -6,6 +6,7 @@ import { HomePage } from "@/components/layout/home-page";
 import { AboutPage } from "./components/layout/about-page";
 import { SettingsPage } from "./components/layout/settings-page";
 import { ProjectPage } from "./components/layout/project-page";
+import { NotFoundPage } from "./components/layout/not-found-page";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/settings" element={<SettingsPage />} />
             <Route path="/:orgOrUser/:project" element={<ProjectPage />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Route>
         </Routes>
       </Router>

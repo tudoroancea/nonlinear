@@ -13,7 +13,9 @@ export function AppSidebar() {
   return (
     <Sidebar collapsible="offcanvas">
       <SidebarHeader>
-        <h1 className="text-2xl font-bold p-2">Nonlinear</h1>
+        <Link to="/">
+          <h1 className="text-2xl font-bold p-2">Nonlinear</h1>
+        </Link>
       </SidebarHeader>
       <SidebarContent>
         <ul className="p-3">
