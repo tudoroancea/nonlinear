@@ -22,14 +22,6 @@ export function AppSidebar() {
         <Link to="/">
           <h1 className="text-2xl font-bold p-2">Nonlinear</h1>
         </Link>
-        <header>
-          <SignedOut>
-            <SignInButton />
-          </SignedOut>
-          <SignedIn>
-            <UserButton />
-          </SignedIn>
-        </header>
       </SidebarHeader>
       <SidebarContent>
         <ul className="p-3">
@@ -40,6 +32,7 @@ export function AppSidebar() {
       </SidebarContent>
       <SidebarFooter>
         <div className="w-full flex items-center justify-between">
+          <UserButton />
           <Link to="/settings">
             <Button id="settings-button" size="icon" variant="outline">
               <Settings className="size-4" />
