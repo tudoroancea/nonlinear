@@ -1,3 +1,9 @@
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  UserButton,
+} from "@clerk/clerk-react";
 import { HelpCircle, Settings } from "lucide-react";
 import { ThemeToggle } from "../theme-toggle";
 import { Button } from "../ui/button";
@@ -16,6 +22,14 @@ export function AppSidebar() {
         <Link to="/">
           <h1 className="text-2xl font-bold p-2">Nonlinear</h1>
         </Link>
+        <header>
+          <SignedOut>
+            <SignInButton />
+          </SignedOut>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
+        </header>
       </SidebarHeader>
       <SidebarContent>
         <ul className="p-3">
