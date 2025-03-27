@@ -1,25 +1,20 @@
-import { ClerkProvider } from "@clerk/clerk-react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { ThemeEffect } from "@/components/theme-effect";
-import { Provider } from "jotai";
+import ApolloClientProvider from "@/components/apollo-provider";
+import AuthProvider from "@/components/auth-provider";
+import { AboutPage } from "@/components/layout/about-page";
 import { AppLayout } from "@/components/layout/app-layout";
 import { HomePage } from "@/components/layout/home-page";
-import { AboutPage } from "./components/layout/about-page";
-import { SettingsPage } from "./components/layout/settings-page";
-import { ProjectPage } from "./components/layout/project-page";
-import { NotFoundPage } from "./components/layout/not-found-page";
-import ApolloClientProvider from "./components/apollo-provider";
-
-const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
-if (!PUBLISHABLE_KEY) {
-  throw new Error("PUBLISHABLE_KEY is not defined");
-}
+import { NotFoundPage } from "@/components/layout/not-found-page";
+import { ProjectPage } from "@/components/layout/project-page";
+import { SettingsPage } from "@/components/layout/settings-page";
+import { ThemeEffect } from "@/components/theme-effect";
+import { Provider as JotaiProvider } from "jotai";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
 function App() {
   return (
-    <ClerkProvider publishableKey={PUBLISHABLE_KEY!} afterSignOutUrl="/">
+    <AuthProvider>
       <ApolloClientProvider>
-        <Provider>
+        <JotaiProvider>
           <ThemeEffect />
           <Router>
             <Routes>
@@ -32,9 +27,9 @@ function App() {
               </Route>
             </Routes>
           </Router>
-        </Provider>
+        </JotaiProvider>
       </ApolloClientProvider>
-    </ClerkProvider>
+    </AuthProvider>
   );
 }
 

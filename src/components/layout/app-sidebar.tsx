@@ -1,9 +1,4 @@
-import {
-  SignedIn,
-  SignedOut,
-  SignInButton,
-  UserButton,
-} from "@clerk/clerk-react";
+import { UserButton } from "@clerk/clerk-react";
 import { HelpCircle, Settings } from "lucide-react";
 import { ThemeToggle } from "../theme-toggle";
 import { Button } from "../ui/button";
@@ -19,8 +14,9 @@ export function AppSidebar() {
   return (
     <Sidebar collapsible="offcanvas">
       <SidebarHeader>
-        <Link to="/">
-          <h1 className="text-2xl font-bold p-2">Nonlinear</h1>
+        <Link to="/" className="flex items-center p-2">
+          <img src="/logo.svg" alt="Logo" className="h-15" />
+          <h1 className="text-2xl font-bold pl-2">Nonlinear</h1>
         </Link>
       </SidebarHeader>
       <SidebarContent>

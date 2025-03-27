@@ -18,8 +18,7 @@
 
   <!-- First segment: Gray to Green -->
   <path
-    d="M25 75
-           Q25 20, 50 50"
+    d="M25 65 Q25 20, 42 42"
     stroke="url(#gradient1)"
     stroke-width="4"
     stroke-linecap="round"
@@ -28,8 +27,7 @@
 
   <!-- Second segment: Green to Purple -->
   <path
-    d="M50 50
-           Q75 80, 75 25"
+    d="M58 58 Q75 80, 75 35"
     stroke="url(#gradient2)"
     stroke-width="4"
     stroke-linecap="round"
@@ -42,16 +40,16 @@
     cy="75"
     r="10"
     stroke="#8b949e"
-    stroke-width="2"
-    fill="#1e1e2e"
+    stroke-width="4"
+    fill="transparent"
   />
   <line
-    x1="20"
-    y1="80"
-    x2="30"
-    y2="70"
+    x1="22"
+    y1="78"
+    x2="28"
+    y2="72"
     stroke="#8b949e"
-    stroke-width="2"
+    stroke-width="3"
     stroke-linecap="round"
   />
 
@@ -61,8 +59,8 @@
     cy="50"
     r="10"
     stroke="#2da44e"
-    stroke-width="2"
-    fill="#1e1e2e"
+    stroke-width="4"
+    fill="transparent"
   />
   <circle cx="50" cy="50" r="3" fill="#2da44e" />
 
@@ -72,13 +70,13 @@
     cy="25"
     r="10"
     stroke="#8957e5"
-    stroke-width="2"
-    fill="#1e1e2e"
+    stroke-width="4"
+    fill="transparent"
   />
   <path
-    d="M68 25 L73 30 L82 21"
+    d="M70 25 L74 28 L80 22"
     stroke="#8957e5"
-    stroke-width="2"
+    stroke-width="3"
     stroke-linecap="round"
     fill="none"
   />

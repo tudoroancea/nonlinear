@@ -17,7 +17,7 @@ export function HomePage() {
   const { loading, error, data } = useQuery(GET_VIEWER);
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+  if (error) return <p>Error: {JSON.stringify(error)}</p>;
 
   return (
     <div>
