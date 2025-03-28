@@ -1,5 +1,4 @@
-import { cn } from "@/lib/utils";
-import { LoginButton } from "./auth-buttons";
+import { SignInButton } from "@clerk/clerk-react";
 
 export function LoginForm() {
   return (
@@ -7,7 +6,7 @@ export function LoginForm() {
       <div className="w-full max-w-sm flex flex-col gap-6 items-center">
         <img src="/logo.svg" alt="Logo" className="h-25" />
         <h1 className="text-xl font-bold self-center">Welcome to Nonlinear</h1>
-        <LoginButton />
+        <SignInButton />
       </div>
     </div>
   );

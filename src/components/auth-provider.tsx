@@ -1,35 +1,30 @@
-import { Auth0Provider } from "@auth0/auth0-react";
+import { ClerkProvider, useAuth } from "@clerk/clerk-react";
+import { useSetAtom } from "jotai";
+import { useEffect } from "react";
+import { fetchGitHubTokenAtom } from "@/lib/atoms/github";
 
-const domain = import.meta.env.VITE_AUTH0_DOMAIN;
-const clientId = import.meta.env.VITE_AUTH0_CLIENT_ID;
-const redirectUri = window.location.origin; // Auth0 redirects back to the app root
+const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
+if (!PUBLISHABLE_KEY) {
+  throw new Error("PUBLISHABLE_KEY is not defined");
+}
 
-console.log("VITE_AUTH0_DOMAIN", domain);
-console.log("VITE_AUTH0_CLIENT_ID", clientId);
+function AuthTokenHandler({ children }: { children: React.ReactNode }) {
+  const { userId, isSignedIn } = useAuth();
+  const fetchGitHubToken = useSetAtom(fetchGitHubTokenAtom);
 
-if (!domain || !clientId) {
-  throw new Error(
-    "Auth0 Domain or Client ID not found in environment variables.",
-  );
+  useEffect(() => {
+    if (isSignedIn && userId) {
+      fetchGitHubToken(userId);
+    }
+  }, [isSignedIn, userId, fetchGitHubToken]);
+
+  return <>{children}</>;
 }
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   return (
-    <Auth0Provider
-      domain={domain}
-      clientId={clientId}
-      authorizationParams={{
-        redirect_uri: redirectUri,
-        // Optional: Specify audience/scope if calling your OWN API secured by Auth0
-        // audience: "YOUR_API_IDENTIFIER",
-        // scope: "openid profile email read:your_api",
-
-        // Note: GitHub scopes are configured in the Auth0 Dashboard Connection settings
-      }}
-      // Optional: Cache tokens in local storage for better persistence
-      // cacheLocation="localstorage"
-    >
-      {children}
-    </Auth0Provider>
+    <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl="/">
+      <AuthTokenHandler>{children}</AuthTokenHandler>
+    </ClerkProvider>
   );
 }

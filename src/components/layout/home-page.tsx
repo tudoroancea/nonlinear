@@ -9,10 +9,6 @@ const GET_VIEWER = gql`
   }
 `;
 
-function MyComponent() {}
-
-export default MyComponent;
-
 export function HomePage() {
   const { loading, error, data } = useQuery(GET_VIEWER);
 

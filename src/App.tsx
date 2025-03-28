@@ -7,7 +7,7 @@ import { NotFoundPage } from "@/components/layout/not-found-page";
 import { ProjectPage } from "@/components/layout/project-page";
 import { SettingsPage } from "@/components/layout/settings-page";
 import { LoginForm } from "@/components/login-form";
-import { SignedIn, SignedOut } from "@/components/signed-in-out";
+import { SignedIn, SignedOut } from "@clerk/clerk-react";
 import { ThemeEffect } from "@/components/theme-effect";
 import { Provider as JotaiProvider } from "jotai";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";

@@ -1,10 +1,9 @@
-import { ManagementClient } from "auth0";
 import { VercelRequest, VercelResponse } from "@vercel/node";
 
-const auth0 = new ManagementClient({
-  domain: process.env.AUTH0_DOMAIN,
-  clientId: process.env.AUTH0_CLIENT_ID,
-  clientSecret: process.env.AUTH0_CLIENT_SECRET,
+import { createClerkClient } from "@clerk/backend";
+
+const clerkClient = createClerkClient({
+  secretKey: process.env.CLERK_SECRET_KEY,
 });
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -19,13 +18,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
-    const user = await auth0.users.get({ id: userId as string });
-    const githubIdentity = user.identities?.find(
-      (id) => id.provider === "github",
+    const response = await clerkClient.users.getUserOauthAccessToken(
+      userId as string,
+      "github",
     );
+    console.log("response", response);
+    const githubToken = response.data[0].token;
 
-    if (githubIdentity) {
-      const githubToken = githubIdentity.access_token;
+    if (githubToken) {
       return res.status(200).json({ githubToken });
     } else {
       return res
