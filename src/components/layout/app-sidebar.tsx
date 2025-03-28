@@ -1,5 +1,6 @@
-import { UserButton } from "@clerk/clerk-react";
 import { HelpCircle, Settings } from "lucide-react";
+import { Link } from "react-router-dom";
+import { LogoutButton } from "../auth-buttons";
 import { ThemeToggle } from "../theme-toggle";
 import { Button } from "../ui/button";
 import {
@@ -8,7 +9,6 @@ import {
   SidebarFooter,
   SidebarHeader,
 } from "../ui/sidebar";
-import { Link } from "react-router-dom";
 
 export function AppSidebar() {
   return (
@@ -28,7 +28,7 @@ export function AppSidebar() {
       </SidebarContent>
       <SidebarFooter>
         <div className="w-full flex items-center justify-between">
-          <UserButton />
+          <LogoutButton />
           <Link to="/settings">
             <Button id="settings-button" size="icon" variant="outline">
               <Settings className="size-4" />
