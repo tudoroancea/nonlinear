@@ -28,6 +28,8 @@ export const fetchGitHubTokenAtom = atom(
         throw new Error(`Failed to fetch GitHub token: ${response.statusText}`);
       }
 
+      console.log("Response:", response);
+
       const data = await response.json();
       set(githubTokenAtom, {
         token: data.githubToken,
