@@ -25,6 +25,7 @@ interface ApolloClientProviderProps {
 export function ApolloClientProvider({ children }: ApolloClientProviderProps) {
   // Get user and loading state from Auth0
   const { user, isLoading: isAuthLoading, isAuthenticated } = useAuth0();
+  console.log(user);
 
   // Memoize the Apollo Client instance.
   // Recreate it only if the user object reference changes (e.g., on login/logout)
