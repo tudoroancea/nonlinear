@@ -8,8 +8,22 @@ import {
   SidebarHeader,
 } from "../ui/sidebar";
 import { UserButton } from "@clerk/clerk-react";
+import { useAtom } from "jotai";
+import { pinnedProjectsAtom, projectsAtom } from "@/lib/atoms/github-data";
+import { useGitHubData } from "@/hooks/use-github-data";
 
 export function AppSidebar() {
+  // Initialize GitHub data fetching
+  useGitHubData();
+
+  const [pinnedProjects] = useAtom(pinnedProjectsAtom);
+  const [projects] = useAtom(projectsAtom);
+
+  // Get pinned project details
+  const pinnedProjectDetails = projects.data.filter((project) =>
+    pinnedProjects.includes(project.id),
+  );
+
   return (
     <Sidebar collapsible="offcanvas">
       <SidebarHeader>
@@ -19,11 +33,29 @@ export function AppSidebar() {
         </Link>
       </SidebarHeader>
       <SidebarContent>
-        <ul className="p-3">
-          <li>Item 1</li>
-          <li>Item 2</li>
-          <li>Item 3</li>
-        </ul>
+        <div className="p-3">
+          <h3 className="text-sm font-semibold mb-2 text-muted-foreground">
+            Pinned Projects
+          </h3>
+          {pinnedProjectDetails.length > 0 ? (
+            <ul className="space-y-1">
+              {pinnedProjectDetails.map((project) => (
+                <li key={project.id}>
+                  <Link
+                    to={`/project/${project.title}`}
+                    className="flex items-center py-1 px-2 rounded hover:bg-muted text-sm"
+                  >
+                    {project.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="text-sm text-muted-foreground">
+              No pinned projects yet. Pin projects from the home page.
+            </p>
+          )}
+        </div>
       </SidebarContent>
       <SidebarFooter>
         <div className="w-full flex items-center justify-between">
