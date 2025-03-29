@@ -21,6 +21,7 @@ const GET_PROJECTS = gql`
     }
   }
 `;
+
 function UserInfo() {
   const { loading, error, data } = useQuery(GET_VIEWER);
 
@@ -40,6 +41,7 @@ function UserInfo() {
     </div>
   );
 }
+
 function Projects() {
   const { loading, error, data } = useQuery(GET_PROJECTS);
 
@@ -55,7 +57,8 @@ function Projects() {
     <div className="p-2">
       <h2 className="text-lg font-bold">Projects</h2>
       <ul className="list-disc list-inside">
-        {data.viewer.projectsV2.nodes.map((project) => (
+        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+        {data.viewer.projectsV2.nodes.map((project: any) => (
           <li key={project.id}>{project.title}</li>
         ))}
       </ul>
