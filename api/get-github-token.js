@@ -3,6 +3,7 @@ import { createClerkClient } from "@clerk/backend";
 const clerkClient = createClerkClient({
   secretKey: process.env.CLERK_SECRET_KEY,
 });
+console.log("CLERK_SECRET_KEY", process.env.CLERK_SECRET_KEY);
 
 export default async function handler(req, res) {
   if (req.method !== "GET") {

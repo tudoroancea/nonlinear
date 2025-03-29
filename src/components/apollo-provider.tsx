@@ -35,10 +35,12 @@ export function ApolloClientProvider({ children }: ApolloClientProviderProps) {
     });
   }, [token]); // Only recreate client when token changes
 
+  // TODO: create actual loading state
   if (loading) {
     return <div>Setting up GitHub connection...</div>;
   }
 
+  // TODO: create actual error state
   if (error) {
     return <div>Error connecting to GitHub: {error.message}</div>;
   }
