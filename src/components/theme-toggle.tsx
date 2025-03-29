@@ -5,11 +5,12 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useTheme } from "@/hooks/use-theme";
+import { setThemeAtom } from "@/lib/atoms/theme";
+import { useAtom } from "jotai";
 import { Moon, Sun } from "lucide-react";
 
 export function ThemeToggle() {
-  const { setTheme } = useTheme();
+  const [, setTheme] = useAtom(setThemeAtom);
 
   return (
     <DropdownMenu>

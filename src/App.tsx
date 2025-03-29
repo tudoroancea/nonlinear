@@ -1,4 +1,4 @@
-import { ApolloClientProvider } from "@/components/apollo-provider";
+import { GraphQLProvider } from "@/components/graphql-provider";
 import { AuthProvider } from "@/components/auth-provider";
 import { AboutPage } from "@/components/layout/about-page";
 import { AppLayout } from "@/components/layout/app-layout";
@@ -15,7 +15,7 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 export function App() {
   return (
     <AuthProvider>
-      <ApolloClientProvider>
+      <GraphQLProvider>
         <JotaiProvider>
           <ThemeEffect />
           <Router>
@@ -38,53 +38,7 @@ export function App() {
             </SignedIn>
           </Router>
         </JotaiProvider>
-      </ApolloClientProvider>
+      </GraphQLProvider>
     </AuthProvider>
   );
 }
-
-// import React from "react";
-// import { useAuth0 } from "@auth0/auth0-react";
-// import { LoginButton, LogoutButton } from "@/components/auth-buttons";
-// import GitHubApiComponent from "@/components/github-api-component";
-// import { SignedIn, SignedOut } from "./components/signed-in-out";
-
-// const App: React.FC = () => {
-//   const { isAuthenticated, isLoading, error } = useAuth0();
-
-//   if (isLoading) {
-//     return <div>Loading Application...</div>;
-//   }
-
-//   if (error) {
-//     return <div>Oops... {error.message}</div>;
-//   }
-
-//   return (
-//     <div>
-//       <h1>Auth0 + GitHub Example</h1>
-//       <nav>
-//         {/* Add navigation links if needed */}
-//         {/* <Link to="/">Home</Link> */}
-//       </nav>
-//       <hr />
-
-//       {!isAuthenticated && (
-//         <>
-//           <p>You are not logged in.</p>
-//           <LoginButton />
-//         </>
-//       )}
-
-//       {isAuthenticated && (
-//         <>
-//           <LogoutButton />
-//           <hr />
-//           <GitHubApiComponent />
-//         </>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default App;
