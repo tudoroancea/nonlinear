@@ -1,5 +1,7 @@
 # nonlinear
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/71e9504d-0ffe-410a-ba11-ca826320a928/deploy-status)](https://app.netlify.com/sites/nonlinearapp/deploys)
+
 This small app was designed to be a _frontend replacement_ for GitHub Projects.
 It uses all the data you already have in these projects (the issues and PRs
 themselves along with the special metadata defined in the projects, such as
