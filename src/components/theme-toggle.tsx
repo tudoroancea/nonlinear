@@ -1,37 +1,54 @@
-import { Button } from "@/components/ui/button";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { setThemeAtom } from "@/lib/atoms/theme";
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { setThemeAtom, Theme, themeAtom } from "@/lib/atoms/theme";
 import { useAtom } from "jotai";
-import { Moon, Sun } from "lucide-react";
+import { Moon, Sun, ComputerIcon } from "lucide-react";
 
-export function ThemeToggle() {
+export function ThemeSelector() {
+  const [theme] = useAtom(themeAtom);
   const [, setTheme] = useAtom(setThemeAtom);
 
+  // Map each theme to its corresponding icon
+  const themeIcons: Record<Theme, React.ElementType> = {
+    light: Sun,
+    dark: Moon,
+    system: ComputerIcon,
+  };
+
+  // All possible theme values
+  const themes: Theme[] = ["light", "dark", "system"];
+
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="icon">
-          <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-          <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-          <span className="sr-only">Toggle theme</span>
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setTheme("light")}>
-          Light
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("dark")}>
-          Dark
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("system")}>
-          System
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
+    <Select
+      onValueChange={(t) => setTheme(t as Theme)}
+      defaultValue={theme as string}
+    >
+      <SelectTrigger className="w-[180px]">
+        <SelectValue placeholder="Theme" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectGroup>
+          {themes.map((themeValue) => {
+            const Icon = themeIcons[themeValue];
+            return (
+              <SelectItem key={themeValue} value={themeValue}>
+                <div className="flex items-center gap-2">
+                  <Icon className="h-4 w-4" />
+                  <span>
+                    {themeValue.charAt(0).toUpperCase() + themeValue.slice(1)}
+                  </span>
+                </div>
+              </SelectItem>
+            );
+          })}
+        </SelectGroup>
+      </SelectContent>
+    </Select>
   );
 }

@@ -1,6 +1,5 @@
 import { HelpCircle, Settings } from "lucide-react";
 import { Link } from "react-router-dom";
-import { ThemeToggle } from "../theme-toggle";
 import { Button } from "../ui/button";
 import {
   Sidebar,
@@ -39,7 +38,6 @@ export function AppSidebar() {
               <HelpCircle className="size-4" />
             </Button>
           </Link>
-          <ThemeToggle />
         </div>
       </SidebarFooter>
     </Sidebar>
