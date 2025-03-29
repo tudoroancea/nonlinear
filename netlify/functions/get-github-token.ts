@@ -1,5 +1,5 @@
-import type { Context, Config } from "@netlify/functions";
 import { createClerkClient } from "@clerk/backend";
+import type { Config, Context } from "@netlify/functions";
 
 const clerkClient = createClerkClient({
   secretKey: process.env.CLERK_SECRET_KEY,
