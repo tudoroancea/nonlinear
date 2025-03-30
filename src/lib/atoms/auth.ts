@@ -7,7 +7,6 @@ export const asyncReadGithubTokenAtom = atom<Promise<string>>(async (get) =>
     .then((response) => response.json())
     .then((data) => {
       const token = data.githubToken as string;
-      console.log("received token:", token);
       return token;
     }),
 );
