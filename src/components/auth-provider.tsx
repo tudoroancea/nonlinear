@@ -1,9 +1,10 @@
 import { useTheme } from "@/hooks/use-theme";
-import { fetchGitHubTokenAtom } from "@/lib/atoms/github";
+import { clerkUserIdAtom } from "@/lib/atoms/github-token";
 import { ClerkProvider, useAuth } from "@clerk/clerk-react";
 import { dark } from "@clerk/themes";
-import { useSetAtom } from "jotai";
-import { useEffect } from "react";
+import { useAtom } from "jotai";
+import { Suspense, useEffect } from "react";
+import { LoadingScreen } from "./loading-screen";
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 if (!PUBLISHABLE_KEY) {
@@ -12,15 +13,27 @@ if (!PUBLISHABLE_KEY) {
 
 function AuthTokenHandler({ children }: { children: React.ReactNode }) {
   const { userId, isSignedIn } = useAuth();
-  const fetchGitHubToken = useSetAtom(fetchGitHubTokenAtom);
+  const [clerkUserId, setClerkUserId] = useAtom(clerkUserIdAtom);
 
   useEffect(() => {
     if (isSignedIn && userId) {
-      fetchGitHubToken(userId);
+      setClerkUserId(userId);
     }
-  }, [isSignedIn, userId, fetchGitHubToken]);
+  }, [isSignedIn, setClerkUserId, userId]);
 
-  return <>{children}</>;
+  // Only render the children once the clerkUserId has been set and we can start the chain
+  // fetch github token -> create graphql client -> query user data
+  return (
+    <>
+      {clerkUserId ? (
+        <Suspense fallback={<LoadingScreen message="Loading data..." />}>
+          {children}
+        </Suspense>
+      ) : (
+        <LoadingScreen message="Signing in..." />
+      )}
+    </>
+  );
 }
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {

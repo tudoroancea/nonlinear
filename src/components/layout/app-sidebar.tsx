@@ -9,18 +9,14 @@ import {
 } from "../ui/sidebar";
 import { UserButton } from "@clerk/clerk-react";
 import { useAtom } from "jotai";
-import { pinnedProjectsAtom, projectsAtom } from "@/lib/atoms/github-data";
-import { useGitHubData } from "@/hooks/use-github-data";
+import { pinnedProjectsAtom, userDataAtom } from "@/lib/atoms/user-data";
 
 export function AppSidebar() {
-  // Initialize GitHub data fetching
-  useGitHubData();
-
   const [pinnedProjects] = useAtom(pinnedProjectsAtom);
-  const [projects] = useAtom(projectsAtom);
+  const [userData] = useAtom(userDataAtom);
 
   // Get pinned project details
-  const pinnedProjectDetails = projects.data.filter((project) =>
+  const pinnedProjectDetails = userData.projects.filter((project) =>
     pinnedProjects.includes(project.id),
   );
 

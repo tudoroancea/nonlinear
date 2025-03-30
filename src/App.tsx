@@ -1,4 +1,3 @@
-import { GraphQLProvider } from "@/components/graphql-provider";
 import { AuthProvider } from "@/components/auth-provider";
 import { AboutPage } from "@/components/layout/about-page";
 import { AppLayout } from "@/components/layout/app-layout";
@@ -14,10 +13,10 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
 export function App() {
   return (
-    <AuthProvider>
-      <GraphQLProvider>
-        <JotaiProvider>
-          <ThemeEffect />
+    <>
+      <ThemeEffect />
+      <JotaiProvider>
+        <AuthProvider>
           <Router>
             <SignedOut>
               <LoginForm />
@@ -37,8 +36,8 @@ export function App() {
               </Routes>
             </SignedIn>
           </Router>
-        </JotaiProvider>
-      </GraphQLProvider>
-    </AuthProvider>
+        </AuthProvider>
+      </JotaiProvider>
+    </>
   );
 }

@@ -3,7 +3,5 @@ import { useAtom } from "jotai";
 
 export function useTheme() {
   const [theme] = useAtom(actualThemeAtom);
-  return {
-    theme,
-  };
+  return { theme };
 }

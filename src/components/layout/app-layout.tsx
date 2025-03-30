@@ -1,4 +1,6 @@
+import { ErrorBoundary } from "react-error-boundary";
 import { Outlet } from "react-router-dom";
+import { ErrorScreen } from "../error-screen";
 import { SidebarProvider, SidebarTrigger } from "../ui/sidebar";
 import { AppSidebar } from "./app-sidebar";
 
@@ -14,7 +16,9 @@ export function AppLayout() {
             </div>
           </div>
           <div className="overflow-auto h-[calc(100svh-80px)] lg:h-[calc(100svh-96px)] w-full">
-            <Outlet />
+            <ErrorBoundary fallback={<ErrorScreen />}>
+              <Outlet />
+            </ErrorBoundary>
           </div>
         </div>
       </div>

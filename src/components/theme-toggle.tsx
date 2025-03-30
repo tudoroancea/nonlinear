@@ -1,3 +1,4 @@
+// TODO: rename this file
 import {
   Select,
   SelectContent,
@@ -6,13 +7,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { setThemeAtom, Theme, themeAtom } from "@/lib/atoms/theme";
+import { Theme, themeAtom } from "@/lib/atoms/theme";
 import { useAtom } from "jotai";
 import { Moon, Sun, ComputerIcon } from "lucide-react";
 
 export function ThemeSelector() {
-  const [theme] = useAtom(themeAtom);
-  const [, setTheme] = useAtom(setThemeAtom);
+  const [theme, setTheme] = useAtom(themeAtom);
 
   // Map each theme to its corresponding icon
   const themeIcons: Record<Theme, React.ElementType> = {
