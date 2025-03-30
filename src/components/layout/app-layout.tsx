@@ -1,8 +1,8 @@
 import { ErrorBoundary } from "react-error-boundary";
 import { Outlet } from "react-router-dom";
-import { ErrorScreen } from "../error-screen";
-import { SidebarProvider, SidebarTrigger } from "../ui/sidebar";
-import { AppSidebar } from "./app-sidebar";
+import { ErrorScreen } from "@/components/error-screen";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/layout/app-sidebar";
 
 export function AppLayout() {
   return (

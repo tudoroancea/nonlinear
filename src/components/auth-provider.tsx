@@ -1,5 +1,5 @@
 import { useTheme } from "@/hooks/use-theme";
-import { clerkUserIdAtom } from "@/lib/atoms/github-token";
+import { clerkUserIdAtom } from "@/lib/atoms/auth";
 import { ClerkProvider, useAuth } from "@clerk/clerk-react";
 import { dark } from "@clerk/themes";
 import { useAtom } from "jotai";

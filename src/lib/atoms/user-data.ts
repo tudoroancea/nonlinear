@@ -1,9 +1,19 @@
-import { gql } from "@apollo/client";
-import { atomWithStorage } from "jotai/utils";
 import { graphqlClientAtom } from "@/lib/atoms/graphql-client";
+import { gql } from "@apollo/client";
 import { atom } from "jotai";
+import { atomWithStorage } from "jotai/utils";
 
-// Our combined query to fetch viewer details and projects
+interface Project {
+  id: string;
+  title: string;
+}
+
+interface UserData {
+  username: string | null;
+  displayName: string | null;
+  projects: Project[];
+}
+
 export const GET_USER_AND_PROJECTS = gql`
   query {
     viewer {
@@ -18,28 +28,6 @@ export const GET_USER_AND_PROJECTS = gql`
     }
   }
 `;
-
-// TODO: create actual type here
-// Create the query atom using jotai-apollo.
-// This returns an array: [dataAtom, statusAtom].
-// The dataAtom will eventually resolve to the query result.
-// export const [userAndProjectsAtom, userAndProjectsStatusAtom] = atomsWithQuery(
-//   () => ({
-//     query: GET_USER_AND_PROJECTS,
-//   }),
-//   // (get) => get(graphqlClientAtom),
-// );
-
-interface Project {
-  id: string;
-  title: string;
-}
-
-interface UserData {
-  username: string | null;
-  displayName: string | null;
-  projects: Project[];
-}
 
 export const userDataAtom = atom<Promise<UserData>>(async (get) =>
   get(graphqlClientAtom)

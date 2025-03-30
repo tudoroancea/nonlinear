@@ -1,15 +1,15 @@
-import { HelpCircle, Settings } from "lucide-react";
-import { Link } from "react-router-dom";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
-} from "../ui/sidebar";
+} from "@/components/ui/sidebar";
+import { pinnedProjectsAtom, userDataAtom } from "@/lib/atoms/user-data";
 import { UserButton } from "@clerk/clerk-react";
 import { useAtom } from "jotai";
-import { pinnedProjectsAtom, userDataAtom } from "@/lib/atoms/user-data";
+import { HelpCircle, Settings } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export function AppSidebar() {
   const [pinnedProjects] = useAtom(pinnedProjectsAtom);

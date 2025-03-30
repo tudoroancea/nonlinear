@@ -1,7 +1,7 @@
+import { asyncReadGithubTokenAtom } from "@/lib/atoms/auth";
 import { ApolloClient, createHttpLink, InMemoryCache } from "@apollo/client";
-import { atom } from "jotai";
-import { asyncReadGithubTokenAtom } from "./github-token";
 import { setContext } from "@apollo/client/link/context";
+import { atom } from "jotai";
 
 // Initialize the Apollo client once the github token as been fetched
 export const graphqlClientAtom = atom(async (get) =>

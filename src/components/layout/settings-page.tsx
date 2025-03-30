@@ -1,4 +1,4 @@
-import { ThemeSelector } from "../theme-toggle";
+import { ThemeSelector } from "@/components/theme-selector";
 
 export const SettingsPage = () => {
   return (
