@@ -5,18 +5,21 @@ import { Pin } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export function HomePage() {
-  // Initialize GitHub data fetching
   const [userData] = useAtom(userDataAtom);
   const [pinnedProjects, setPinnedProjects] = useAtom(pinnedProjectsAtom);
 
-  // Toggle pin status of a project
-  const togglePin = (projectId: string) => {
+  const togglePin = (e: React.MouseEvent, projectId: string) => {
+    // Stop the event from bubbling up to the Link
+    e.preventDefault();
+    e.stopPropagation();
+    
     if (pinnedProjects.includes(projectId)) {
       setPinnedProjects(pinnedProjects.filter((id) => id !== projectId));
     } else {
       setPinnedProjects([...pinnedProjects, projectId]);
     }
   };
+
   return (
     <div className="container mx-auto p-2">
       <h1 className="text-2xl font-bold mb-6">Projects Dashboard</h1>
@@ -38,7 +41,7 @@ export function HomePage() {
               <Button
                 size="sm"
                 variant="ghost"
-                onClick={() => togglePin(project.id)}
+                onClick={(e) => togglePin(e, project.id)}
                 title={
                   pinnedProjects.includes(project.id)
                     ? "Unpin project"
