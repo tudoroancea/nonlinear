@@ -12,7 +12,7 @@ export function HomePage() {
     // Stop the event from bubbling up to the Link
     e.preventDefault();
     e.stopPropagation();
-    
+
     if (pinnedProjects.includes(projectId)) {
       setPinnedProjects(pinnedProjects.filter((id) => id !== projectId));
     } else {
@@ -33,7 +33,7 @@ export function HomePage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {userData.projects.map((project) => (
             <Link
-              to={`/project/${project.title}`}
+              to={`/${userData.username}/${project.title}`}
               key={project.id}
               className="border rounded-md p-4 flex justify-between items-center hover:bg-muted/50"
             >

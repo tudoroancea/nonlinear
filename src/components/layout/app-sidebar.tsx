@@ -38,7 +38,7 @@ export function AppSidebar() {
               {pinnedProjectDetails.map((project) => (
                 <li key={project.id}>
                   <Link
-                    to={`/project/${project.title}`}
+                    to={`/${userData.username}/${project.title}`}
                     className="flex items-center py-1 px-2 rounded hover:bg-muted text-sm"
                   >
                     {project.title}
