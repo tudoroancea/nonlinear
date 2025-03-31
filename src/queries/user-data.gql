@@ -1,0 +1,12 @@
+query UserData {
+    viewer {
+        login
+        name
+        projectsV2(first: 20) {
+            nodes {
+                id
+                title
+            }
+        }
+    }
+}

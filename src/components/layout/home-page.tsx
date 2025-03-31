@@ -1,12 +1,17 @@
 import { Button } from "@/components/ui/button";
-import { pinnedProjectsAtom, userDataAtom } from "@/lib/atoms/user-data";
-import { useAtom } from "jotai";
+import {
+  brains2ProjectDataAtom,
+  pinnedProjectsAtom,
+  userDataAtom,
+} from "@/lib/atoms/user-data";
+import { useAtom, useAtomValue } from "jotai";
 import { Pin } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export function HomePage() {
-  const [userData] = useAtom(userDataAtom);
+  const userData = useAtomValue(userDataAtom);
   const [pinnedProjects, setPinnedProjects] = useAtom(pinnedProjectsAtom);
+  const brains2ProjectData = useAtomValue(brains2ProjectDataAtom);
 
   const togglePin = (e: React.MouseEvent, projectId: string) => {
     // Stop the event from bubbling up to the Link

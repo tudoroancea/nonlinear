@@ -20,7 +20,7 @@ import { Outlet } from "react-router-dom";
 //   BreadcrumbPage,
 //   BreadcrumbSeparator,
 // } from "@/components/ui/breadcrumb";
-// import { Separator } from "@/components/ui/separator";
+import { Separator } from "@/components/ui/separator";
 
 export function AppLayout() {
   const { userId } = useAuth();
@@ -38,15 +38,14 @@ export function AppLayout() {
   return (
     <>
       {clerkUserId ? (
-        <Suspense fallback={<LoadingScreen message="Loading data..." />}>
+        <Suspense fallback={<LoadingScreen message="Loading user data..." />}>
           <SidebarProvider>
             <AppSidebar />
             <SidebarInset>
               <div className="px-4">
-                <header className="flex h-16 shrink-0 items-center gap-2">
-                  <div className="flex items-center gap-2">
-                    <SidebarTrigger className="-ml-1" />
-                    {/* <Separator
+                <header className="flex h-12 shrink-0 items-center">
+                  <SidebarTrigger className="-ml-1" />
+                  {/* <Separator
                     id="separator"
                     orientation="vertical"
                     className="mr-2 h-4"
@@ -62,8 +61,8 @@ export function AppLayout() {
                       </BreadcrumbItem>
                     </BreadcrumbList>
                   </Breadcrumb> */}
-                  </div>
                 </header>
+                <Separator />
                 <ErrorBoundary fallback={<ErrorScreen />}>
                   <Outlet />
                 </ErrorBoundary>
