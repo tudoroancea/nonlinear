@@ -9,7 +9,12 @@ import { LoginForm } from "@/components/login-form";
 import { ThemeEffect } from "@/components/theme-effect";
 import { SignedIn, SignedOut } from "@clerk/clerk-react";
 import { Provider as JotaiProvider } from "jotai";
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import {
+  Navigate,
+  Route,
+  BrowserRouter as Router,
+  Routes,
+} from "react-router-dom";
 
 export function App() {
   return (
@@ -24,7 +29,8 @@ export function App() {
             <SignedIn>
               <Routes>
                 <Route element={<AppLayout />}>
-                  <Route index element={<HomePage />} />
+                  <Route index element={<Navigate to="/home" replace />} />
+                  <Route path="/home" element={<HomePage />} />
                   <Route path="/about" element={<AboutPage />} />
                   <Route path="/settings" element={<SettingsPage />} />
                   <Route

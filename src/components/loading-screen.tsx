@@ -3,11 +3,13 @@ import { cn } from "@/lib/utils";
 
 interface LoadingScreenProps {
   message?: string;
+  logo?: boolean;
   className?: string;
 }
 
 export function LoadingScreen({
   message = "Loading your projects...",
+  logo = true,
   className,
 }: LoadingScreenProps) {
   return (
@@ -17,10 +19,12 @@ export function LoadingScreen({
         className,
       )}
     >
-      <div className="flex flex-col items-center gap-6">
-        <img src="/logo.svg" alt="Nonlinear Logo" className="h-20 w-auto" />
-        <h1 className="text-2xl font-bold text-foreground">Nonlinear</h1>
-      </div>
+      {logo && (
+        <div className="flex flex-col items-center gap-6">
+          <img src="/logo.svg" alt="Nonlinear Logo" className="h-20 w-auto" />
+          <h1 className="text-2xl font-bold text-foreground">Nonlinear</h1>
+        </div>
+      )}
 
       <div className="flex flex-col items-center gap-3">
         <Loader2 className="h-8 w-8 animate-spin text-primary" />

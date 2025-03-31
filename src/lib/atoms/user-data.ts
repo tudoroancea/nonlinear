@@ -14,8 +14,8 @@ interface Project {
 }
 
 interface UserData {
-  username: string | null;
-  displayName: string | null;
+  username: string;
+  displayName: string;
   projects: Project[];
 }
 
@@ -32,8 +32,8 @@ export const userDataAtom = atom<Promise<UserData>>(async (get) =>
       const { data } = queryResult as { data: UserDataQuery };
 
       return {
-        username: data?.viewer?.login ?? null,
-        displayName: data?.viewer?.name ?? null,
+        username: data?.viewer?.login ?? "",
+        displayName: data?.viewer?.name ?? "",
         projects:
           data?.viewer?.projectsV2?.nodes?.map((node) => ({
             id: node?.id ?? "",

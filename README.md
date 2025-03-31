@@ -32,7 +32,6 @@ This app uses:
 
 ## Routes
 
-**bruh**
 
 - **`/home`**: home page
 - **`/about`**: about page
