@@ -14,8 +14,8 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 export function App() {
   return (
     <>
-      <ThemeEffect />
       <JotaiProvider>
+        <ThemeEffect />
         <AuthProvider>
           <Router>
             <SignedOut>

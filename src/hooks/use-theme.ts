@@ -1,7 +1,7 @@
 import { actualThemeAtom } from "@/lib/atoms/theme";
-import { useAtom } from "jotai";
+import { useAtomValue } from "jotai";
 
 export function useTheme() {
-  const [theme] = useAtom(actualThemeAtom);
+  const theme = useAtomValue(actualThemeAtom);
   return { theme };
 }
