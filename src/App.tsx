@@ -28,7 +28,7 @@ export function App() {
                   <Route path="/about" element={<AboutPage />} />
                   <Route path="/settings" element={<SettingsPage />} />
                   <Route
-                    path="/:orgOrUser/:project"
+                    path="/project/:orgOrUser/:project"
                     element={<ProjectPage />}
                   />
                   <Route path="*" element={<NotFoundPage />} />

@@ -29,3 +29,13 @@ This app uses:
 1. On the home page we show all the projects available to the user (with some
   explanations as to which projects we show here) and they can select the ones
   they pin on the sidebar (which are persisted to `localStorage`)
+
+## Routes
+
+**bruh**
+
+- **`/home`**: home page
+- **`/about`**: about page
+- **`/settings`**: settings page
+- **`/project/:orgOrUser/:project`**: project page for `orgOrUser/project`
+- **`/api/get-github-token`**: backend endpoint to fetch the GitHub token using the Clerk user id.

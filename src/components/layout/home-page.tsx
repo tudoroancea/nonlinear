@@ -33,7 +33,7 @@ export function HomePage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {userData.projects.map((project) => (
             <Link
-              to={`/${userData.username}/${project.title}`}
+              to={`/project/${userData.username}/${project.title}`}
               key={project.id}
               className="border rounded-md p-4 flex justify-between items-center hover:bg-muted/50"
             >
