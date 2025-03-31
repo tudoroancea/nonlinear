@@ -21,7 +21,7 @@ export function AppSidebar() {
   );
 
   return (
-    <Sidebar collapsible="offcanvas">
+    <Sidebar variant="inset" collapsible="offcanvas">
       <SidebarHeader>
         <Link to="/" className="flex items-center p-2">
           <img src="/logo.svg" alt="Logo" className="h-15" />

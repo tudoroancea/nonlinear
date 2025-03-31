@@ -1,13 +1,26 @@
 import { ErrorScreen } from "@/components/error-screen";
 import { AppSidebar } from "@/components/layout/app-sidebar";
 import { LoadingScreen } from "@/components/loading-screen";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import {
+  SidebarInset,
+  SidebarProvider,
+  SidebarTrigger,
+} from "@/components/ui/sidebar";
 import { clerkUserIdAtom } from "@/lib/atoms/auth";
 import { useAuth } from "@clerk/clerk-react";
 import { useAtom } from "jotai";
 import { Suspense, useEffect } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { Outlet } from "react-router-dom";
+// import {
+//   Breadcrumb,
+//   BreadcrumbItem,
+//   BreadcrumbLink,
+//   BreadcrumbList,
+//   BreadcrumbPage,
+//   BreadcrumbSeparator,
+// } from "@/components/ui/breadcrumb";
+// import { Separator } from "@/components/ui/separator";
 
 export function AppLayout() {
   const { userId } = useAuth();
@@ -28,20 +41,34 @@ export function AppLayout() {
         <Suspense fallback={<LoadingScreen message="Loading data..." />}>
           <SidebarProvider>
             <AppSidebar />
-            <div className="h-svh overflow-hidden lg:p-2 w-full">
-              <div className="lg:border lg:rounded-md overflow-hidden flex flex-col items-center justify-start bg-container h-full w-full">
-                <div className="w-full flex flex-col items-center">
-                  <div className="w-full flex justify-between items-center border-b py-1.5 px-6 h-10">
-                    <SidebarTrigger />
+            <SidebarInset>
+              <div className="px-4">
+                <header className="flex h-16 shrink-0 items-center gap-2">
+                  <div className="flex items-center gap-2">
+                    <SidebarTrigger className="-ml-1" />
+                    {/* <Separator
+                    id="separator"
+                    orientation="vertical"
+                    className="mr-2 h-4"
+                  />
+                  <Breadcrumb>
+                    <BreadcrumbList>
+                      <BreadcrumbItem className="hidden md:block">
+                        <BreadcrumbLink href="/">Home</BreadcrumbLink>
+                      </BreadcrumbItem>
+                      <BreadcrumbSeparator className="hidden md:block" />
+                      <BreadcrumbItem>
+                        <BreadcrumbPage>Data Fetching</BreadcrumbPage>
+                      </BreadcrumbItem>
+                    </BreadcrumbList>
+                  </Breadcrumb> */}
                   </div>
-                </div>
-                <div className="overflow-auto h-[calc(100svh-80px)] lg:h-[calc(100svh-96px)] w-full">
-                  <ErrorBoundary fallback={<ErrorScreen />}>
-                    <Outlet />
-                  </ErrorBoundary>
-                </div>
+                </header>
+                <ErrorBoundary fallback={<ErrorScreen />}>
+                  <Outlet />
+                </ErrorBoundary>
               </div>
-            </div>
+            </SidebarInset>
           </SidebarProvider>
         </Suspense>
       ) : (
