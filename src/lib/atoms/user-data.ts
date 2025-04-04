@@ -1,12 +1,7 @@
 import { graphqlClientAtom } from "@/lib/atoms/graphql-client";
 import { atom } from "jotai";
 import { atomWithStorage } from "jotai/utils";
-import {
-  UserDataQuery,
-  UserDataDocument,
-  ProjectDetailsQuery,
-  ProjectDetailsDocument,
-} from "@/generated/graphql";
+import { UserDataQuery, UserDataDocument } from "@/generated/graphql";
 
 interface Project {
   id: string;
@@ -48,17 +43,4 @@ const PINNED_PROJECTS_KEY = "pinnedProjects";
 export const pinnedProjectsAtom = atomWithStorage<string[]>(
   PINNED_PROJECTS_KEY,
   [],
-);
-
-export const brains2ProjectDataAtom = atom(async (get) =>
-  get(graphqlClientAtom)
-    .then((client) =>
-      client.query({
-        query: ProjectDetailsDocument,
-        variables: { projectId: "PVT_kwHOA68A884AoHQa" },
-      }),
-    )
-    .then(({ data }: { data: ProjectDetailsQuery }) => {
-      console.log(data);
-    }),
 );

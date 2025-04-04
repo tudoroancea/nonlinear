@@ -24,11 +24,35 @@ This app uses:
 - Apollo for GraphQL requests
 - Bun for package management
 
-## Basic features
+## Current features
 
-1. On the home page we show all the projects available to the user (with some
+- On the home page we show all the projects available to the user (with some
   explanations as to which projects we show here) and they can select the ones
   they pin on the sidebar (which are persisted to `localStorage`)
+
+- Display as a list all the issues in a project (no PRs) with some info:
+  - url to link to github
+  - issue number
+  - labels
+  - status (detected by field name 'status' or 'Status' or equivalent)
+  - assignee(s)
+  These issues and fields are read/write.
+
+## Future features
+
+- Add grid view
+- Add sort, filtering
+- Add more metadata for issues:
+  - branches and PRs
+  - priority
+  - milestone
+  - parent/child issues
+- Add issue body in a detailed view
+- Add PRs in projects
+- Add support for existing views ??
+  > _This one could be a **big** selling point, but would have multiple implications._
+  > _One of them would be that GitHub only supports board, table and roadmap views._
+  > _We can temporarily support only a subset of those but we could not create new types..._
 
 ## Routes
 

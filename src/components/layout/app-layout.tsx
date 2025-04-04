@@ -12,14 +12,6 @@ import { useAtom } from "jotai";
 import { Suspense, useEffect } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { Outlet } from "react-router-dom";
-// import {
-//   Breadcrumb,
-//   BreadcrumbItem,
-//   BreadcrumbLink,
-//   BreadcrumbList,
-//   BreadcrumbPage,
-//   BreadcrumbSeparator,
-// } from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
 
 export function AppLayout() {
@@ -40,27 +32,13 @@ export function AppLayout() {
       {clerkUserId ? (
         <Suspense fallback={<LoadingScreen message="Loading user data..." />}>
           <SidebarProvider>
-            <AppSidebar />
+            <ErrorBoundary fallback={<ErrorScreen />}>
+              <AppSidebar />
+            </ErrorBoundary>
             <SidebarInset>
               <div className="px-4">
                 <header className="flex h-12 shrink-0 items-center">
                   <SidebarTrigger className="-ml-1" />
-                  {/* <Separator
-                    id="separator"
-                    orientation="vertical"
-                    className="mr-2 h-4"
-                  />
-                  <Breadcrumb>
-                    <BreadcrumbList>
-                      <BreadcrumbItem className="hidden md:block">
-                        <BreadcrumbLink href="/">Home</BreadcrumbLink>
-                      </BreadcrumbItem>
-                      <BreadcrumbSeparator className="hidden md:block" />
-                      <BreadcrumbItem>
-                        <BreadcrumbPage>Data Fetching</BreadcrumbPage>
-                      </BreadcrumbItem>
-                    </BreadcrumbList>
-                  </Breadcrumb> */}
                 </header>
                 <Separator />
                 <ErrorBoundary fallback={<ErrorScreen />}>
